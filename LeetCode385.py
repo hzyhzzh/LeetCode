@@ -1,3 +1,4 @@
+# -*-coding:utf-8 -*-
 # """
 # This is the interface that allows for creating nested lists.
 # You should not implement it, or speculate about its implementation
@@ -41,14 +42,18 @@
 #        :rtype List[NestedInteger]
 #        """
 
+
+
 class Solution(object):
-    def deserialize(self, s):
-        """
-        :type s: str
-        :rtype: NestedInteger
-        """
-        if not s[0] == '[':
-            result = NestedInteger(int(s))
-            return result
+    def deserialize_core(self, data_list):
+        if isinstance(data_list, list):
+            nested_integer = NestedInteger()
+            for n in data_list:
+                nested_integer.add(self.deserialize_core(n))
+            return nested_integer
         else:
-            
+            return NestedInteger(data_list)
+
+    def deserialize(self, s):
+        data = eval(s)
+        return self.deserialize_core(data)
