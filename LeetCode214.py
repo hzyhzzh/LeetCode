@@ -12,5 +12,5 @@ class Solution(object):
             if(i == len(s)):
                 break
         print i
-        s = s[len(s) - 1:len(s) - 1-j:-1] + s
+        s = s[len(s) - 1:len(s) - 1-i:-1] + s
         return s
